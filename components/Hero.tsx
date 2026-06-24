@@ -3,7 +3,7 @@
 import Image from 'next/image';
 
 const stats = [
-  { value: '04', label: 'Projects' },
+  { value: '05', label: 'Projects' },
   { value: '100%', label: 'Shipped' },
   { value: '2024\u2013', label: 'Active' },
 ];

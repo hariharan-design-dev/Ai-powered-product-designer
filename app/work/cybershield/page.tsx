@@ -16,8 +16,8 @@ const project: CaseStudyProject = {
   prototypeUrl:
     'https://www.figma.com/proto/4EP68lwl1n3F8lhaPb8nAr/hari-projects?node-id=518-109&t=e4rMm78x3AF1VIfL-1&scaling=min-zoom&content-scaling=fixed&page-id=345%3A107',
   liveSiteUrl: 'https://cyber-shield-ai-six.vercel.app/',
-  nextHref: '/work/corex-ai',
-  nextTitle: 'COREX AI',
+  nextHref: '/work/future-you',
+  nextTitle: 'FUTURE YOU',
   sections: [
     {
       number: '01',

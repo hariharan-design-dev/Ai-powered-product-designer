@@ -52,6 +52,18 @@ const projects = [
     liveSiteLink: 'https://cyber-shield-ai-six.vercel.app/',
     coverImage: '/images/cybershield/thumbnail.jpeg',
   },
+  {
+    number: '05',
+    title: 'FUTURE YOU',
+    tags: ['AI Product', 'Personal Growth', 'Emotional Design'],
+    description:
+      'An AI-powered personal growth companion that lets users have conversations with their future self - built around hope, direction, and clarity.',
+    caseStudyLink: '/work/future-you',
+    prototypeButton: 'View Prototype',
+    prototypeLink:
+      'https://www.figma.com/proto/pqjAglGSKWfoeJV9iwnvgP/Untitled?node-id=599-306&t=RvPB9QX9vDuUSVHU-1&scaling=scale-down&content-scaling=fixed&page-id=424%3A206&starting-point-node-id=599%3A306',
+    coverImage: '/images/future-you/thumbnail.png',
+  },
 ];
 
 type Project = (typeof projects)[number];

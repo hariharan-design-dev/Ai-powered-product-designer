@@ -31,11 +31,14 @@ export type CaseStudyProject = {
   }[];
   learnings: string[];
   screenGrid?: 'two-column' | 'cheezy';
+  screensSectionTitle?: string;
   screens: {
     src: string;
     alt: string;
     label: string;
+    aspect?: '16/9' | '16/10';
     featured?: boolean;
+    priority?: boolean;
     badge?: string;
   }[];
 };
@@ -190,7 +193,8 @@ export default function CaseStudyLayout({
         {project.sections.map((section) => {
           const isFinalProduct =
             section.title === 'THE FINAL PRODUCT' ||
-            section.title === 'FINAL OUTCOME';
+            section.title === 'FINAL OUTCOME' ||
+            section.title === project.screensSectionTitle;
           const isImpact =
             section.title === 'IMPACT & RESULTS' ||
             section.title === 'FINAL OUTCOME';
@@ -204,7 +208,7 @@ export default function CaseStudyLayout({
                     UI SCREENS
                   </h3>
                   <div
-                    className={`mt-6 grid grid-cols-1 gap-5 ${
+                    className={`mt-6 grid grid-cols-1 gap-4 ${
                       project.screenGrid === 'cheezy'
                         ? 'md:grid-cols-3'
                         : 'md:grid-cols-2'
@@ -212,7 +216,7 @@ export default function CaseStudyLayout({
                   >
                     {project.screens.map((screen) => (
                       <div
-                        className={`group relative aspect-[16/10] overflow-hidden border border-border bg-bg-secondary transition-all duration-300 hover:scale-[1.01] hover:border-accent ${
+                        className={`group ${
                           screen.featured
                             ? project.screenGrid === 'cheezy'
                               ? 'md:col-span-3'
@@ -221,27 +225,34 @@ export default function CaseStudyLayout({
                         }`}
                         key={screen.src}
                       >
-                        <Image
-                          alt={screen.alt}
-                          className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
-                          fill
-                          sizes={
-                            screen.featured
-                              ? '(max-width: 768px) 100vw, 800px'
-                              : '(max-width: 768px) 100vw, 400px'
-                          }
-                          src={screen.src}
-                        />
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                          <p className="font-mono text-xs uppercase tracking-[0.18em] text-text-primary">
-                            {screen.label}
-                          </p>
+                        <div
+                          className={`relative w-full overflow-hidden border border-border bg-bg-secondary transition-all duration-300 group-hover:scale-[1.01] group-hover:border-accent ${
+                            screen.aspect === '16/9'
+                              ? 'aspect-video'
+                              : 'aspect-[16/10]'
+                          }`}
+                        >
+                          <Image
+                            alt={screen.alt}
+                            className="object-cover object-top transition-transform duration-300 ease-in-out group-hover:scale-105"
+                            fill
+                            priority={screen.priority}
+                            sizes={
+                              screen.featured
+                                ? '(max-width: 768px) 100vw, 800px'
+                                : '(max-width: 768px) 100vw, 400px'
+                            }
+                            src={screen.src}
+                          />
+                          {screen.badge ? (
+                            <span className="absolute left-4 top-4 bg-accent px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-black">
+                              {screen.badge}
+                            </span>
+                          ) : null}
                         </div>
-                        {screen.badge ? (
-                          <span className="absolute left-4 top-4 bg-accent px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-black">
-                            {screen.badge}
-                          </span>
-                        ) : null}
+                        <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.18em] text-text-muted">
+                          {screen.label}
+                        </p>
                       </div>
                     ))}
                   </div>
