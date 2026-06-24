@@ -36,7 +36,7 @@ export type CaseStudyProject = {
     src: string;
     alt: string;
     label: string;
-    aspect?: '16/9' | '16/10';
+    aspect?: string;
     featured?: boolean;
     priority?: boolean;
     badge?: string;
@@ -227,10 +227,19 @@ export default function CaseStudyLayout({
                       >
                         <div
                           className={`relative w-full overflow-hidden border border-border bg-bg-secondary transition-all duration-300 group-hover:scale-[1.01] group-hover:border-accent ${
-                            screen.aspect === '16/9'
+                            !screen.aspect || screen.aspect === '16/10'
+                              ? 'aspect-[16/10]'
+                              : screen.aspect === '16/9'
                               ? 'aspect-video'
-                              : 'aspect-[16/10]'
+                              : ''
                           }`}
+                          style={
+                            screen.aspect &&
+                            screen.aspect !== '16/9' &&
+                            screen.aspect !== '16/10'
+                              ? { aspectRatio: screen.aspect }
+                              : undefined
+                          }
                         >
                           <Image
                             alt={screen.alt}
